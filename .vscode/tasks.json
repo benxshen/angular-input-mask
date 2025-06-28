@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Angular: Serve",
+            "command": "ng",
+            "args": ["serve"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "isBackground": true,
+            "problemMatcher": ["$tsc"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Angular: Build",
+            "command": "ng",
+            "args": ["build"],
+            "group": "build",
+            "problemMatcher": ["$tsc"]
+        },
+        {
+            "type": "shell",
+            "label": "Angular: Build Production",
+            "command": "ng",
+            "args": ["build", "--configuration=production"],
+            "group": "build",
+            "problemMatcher": ["$tsc"]
+        }
+    ]
+}

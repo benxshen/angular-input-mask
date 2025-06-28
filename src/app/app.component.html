@@ -1,0 +1,93 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <!-- Reactive Forms Demo -->
+  <div class="demo-section">
+    <h2>Reactive Forms 示例</h2>
+    <form [formGroup]="maskForm" (ngSubmit)="onFormSubmit()">
+      
+      <div class="form-group">
+        <label for="email">Email (保留前2後2字符):</label>
+        <input 
+          id="email"
+          type="email" 
+          formControlName="email"
+          appInputMask
+          [maskStartChars]="2"
+          [maskEndChars]="2"
+          placeholder="請輸入Email">
+        <div class="value-display">
+          <div class="original-value">實際值: {{ maskForm.get('email')?.value }}</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">手機號碼 (保留前3後3字符):</label>
+        <input 
+          id="phone"
+          type="tel" 
+          formControlName="phone"
+          appInputMask
+          [maskStartChars]="3"
+          [maskEndChars]="3"
+          placeholder="請輸入手機號碼">
+        <div class="value-display">
+          <div class="original-value">實際值: {{ maskForm.get('phone')?.value }}</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="creditCard">信用卡號 (保留前4後4字符):</label>
+        <input 
+          id="creditCard"
+          type="text" 
+          formControlName="creditCard"
+          appInputMask
+          [maskStartChars]="4"
+          [maskEndChars]="4"
+          [maskChar]="'*'"
+          placeholder="請輸入信用卡號">
+        <div class="value-display">
+          <div class="original-value">實際值: {{ maskForm.get('creditCard')?.value }}</div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!maskForm.valid">提交表單</button>
+      <button type="button" (click)="updateEmailProgrammatically()">程式化更新Email</button>
+    </form>
+  </div>
+
+  <!-- Template-driven Forms Demo -->
+  <div class="demo-section">
+    <h2>Template-driven Forms 示例</h2>
+    <div class="form-group">
+      <label for="modelInput">模型綁定 (保留前3後3字符):</label>
+      <input 
+        id="modelInput"
+        type="email" 
+        [(ngModel)]="modelValue"
+        appInputMask
+        [maskStartChars]="3"
+        [maskEndChars]="3"
+        placeholder="請輸入Email">
+      <div class="value-display">
+        <div class="original-value">模型值: {{ modelValue }}</div>
+      </div>
+      <button type="button" (click)="updateModelProgrammatically()">程式化更新模型</button>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="demo-section">
+    <h2>使用說明</h2>
+    <ul>
+      <li>點擊輸入框時會顯示完整的原始值</li>
+      <li>失去焦點後會自動應用遮罩，中間字符會被替換為星號</li>
+      <li>可以通過 <code>maskStartChars</code> 設定保留開頭字符數</li>
+      <li>可以通過 <code>maskEndChars</code> 設定保留結尾字符數</li>
+      <li>可以通過 <code>maskChar</code> 設定遮罩字符（預設為 *）</li>
+      <li>支援 FormControl 和 ngModel 的程式化值變更</li>
+      <li>表單的實際值始終是原始值，不是遮罩值</li>
+    </ul>
+  </div>
+</div>
